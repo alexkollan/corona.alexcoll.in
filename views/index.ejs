@@ -7,9 +7,24 @@
 </head>
 
 <body>
-  <h1>Covid Stats for Greece</h1>
-  <p>Coming soon...</p>
-
+  <h1>Covid Stats for <%= data['Country/Region']; %></h1>
+  <p>The APP is under construction </p>
+  <table>
+    <thead>
+      <tr>
+        <% for(let prop in data) { 
+          if(prop !== 'Province/State' && prop !== 'Country/Region' && prop !== 'Lat' && prop !== 'Long'){ %>
+            <td><%= prop %></td>
+        <%  }};  %>
+      </tr>
+    </thead>
+    <tr>
+      <% for(let prop in data) { 
+          if(prop !== 'Province/State' && prop !== 'Country/Region' && prop !== 'Lat' && prop !== 'Long'){ %>
+            <td><%= data[prop] %></td>
+        <%  }};  %>
+      </tr>
+  </table>
 </body>
 
 </html>

@@ -20,7 +20,7 @@ function getRawData() {
 }
 
 
-router.get('/alex', async function (req, res, next) {
+router.get('/', async function (req, res, next) {
   let result;
   try {
     result = await getRawData();
