@@ -9,8 +9,6 @@ const d3 = require('d3');
 function getRawData() {
   let localParsed = [];
   return new Promise((res, rej) => {
-    // console.log('promise:', localParsed.length)
-    // fs.createReadStream('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv'/*path.resolve(__dirname, '../data', 'covid-confirmed-global.csv')*/)
     request.get('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv')  
     .pipe(csv.parse({headers: true}))
       .on('error', error => rej(error))
@@ -38,13 +36,20 @@ function getRawData() {
 
 router.get('/', async function (req, res, next) {
   let result;
-  // drawLineGraph()
   try {
     result = await getRawData();
     console.log('res:', result.length)
-    
-    // console.log(greeceData)
     res.render('index', {data: result});
+  } catch (e) {
+    console.log(e)
+  }
+});
+
+router.get('/greece-data', async function (req, res, next) {
+  let result;
+  try {
+    result = await getRawData();
+    res.json(result)
   } catch (e) {
     console.log(e)
   }

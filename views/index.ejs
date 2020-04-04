@@ -4,7 +4,8 @@
 <head>
   <title>Covid Greece</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.1/d3.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
 
 </head>
 
@@ -25,7 +26,9 @@
         <%})%>
       </tr>
   </table>
-  <svg class="bar-chart"></svg>
+  <!-- Edw apo katw sto graph-container 8a ginoun ta magika sou, apla ola 8a ginoun me javascript
+  de 8a grapseis ka8olou html :P -v- -->
+  <div id="graph-container" class="container"></div>
   <script src="javascripts/drawGraph.js"></script>
 </body>
 

@@ -1,28 +1,30 @@
-let dataset = [80,100,56,120,180,30,40,120,160];
+async function getData() {
+    let response = await fetch(`http://localhost:3000/greece-data`);
+    let data = await response.json()
+    return data;
+}
 
-let svgWidth = 500, svgHeight = 300, barPadding = 5;
-let barWidth = (svgWidth / dataset.length);
+getData()
+    .then((data) => {
+        $('table').after(`<h3>${JSON.stringify(data)}</h3>`)
+        drawChart(data);
+    });
 
-let svg = d3.select('svg')
-    .attr("width", svgWidth)
-    .attr("height", svgHeight)
+function drawChart(data) {
+    /*
+    ta -data- einai ta data sou me format Attay of objects:
+    [
+        { date: '3/21/20', num: '530' },
+        { date: '3/22/20', num: '624' },
+        { date: '3/23/20', num: '695' },
+        klp,
+        klp,
+        klp
+    ]
+    -v- 8ewritika apo dw kai pera paizeis mpala gia na ftiakseis to graph -v-
+    P.S: sou exw ftiaksei kai ena element sto index.ejs to opoio einai starting point sou
+    <div id="graph-container" class="container"></div>
+    */
+   
 
-let barChart = svg.selectAll("rect")
-    .data(dataset)
-    .enter()
-    .append("rect")
-    .attr("y", function(d,i){
-        console.log('first:',svgHeight-d, i)
-        return svgHeight - d;
-    })
-    .attr("height", function(d, i){
-        console.log('second:',d, i)
-        return d;
-    })
-    .attr("width", barWidth - barPadding)
-    .attr("transform", function(d,i){
-        let translate = [barWidth*i,0];
-        return `translate(${translate})`;
-    })
-
-// let text
+}
