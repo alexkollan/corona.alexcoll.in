@@ -4,6 +4,8 @@
 <head>
   <title>Covid Greece</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.1/d3.min.js"></script>
+
 </head>
 
 <body>
@@ -12,19 +14,19 @@
   <table>
     <thead>
       <tr>
-        <% for(let prop in data) { 
-          if(prop !== 'Province/State' && prop !== 'Country/Region' && prop !== 'Lat' && prop !== 'Long'){ %>
-            <td><%= prop %></td>
-        <%  }};  %>
+        <% data.forEach(function(e, i){%>
+          <td><%= e.date %></td>
+          <%})%>
       </tr>
     </thead>
     <tr>
-      <% for(let prop in data) { 
-          if(prop !== 'Province/State' && prop !== 'Country/Region' && prop !== 'Lat' && prop !== 'Long'){ %>
-            <td><%= data[prop] %></td>
-        <%  }};  %>
+      <% data.forEach(function(e, i){%>
+        <td><%= e.num %></td>
+        <%})%>
       </tr>
   </table>
+  <svg class="bar-chart"></svg>
+  <script src="javascripts/drawGraph.js"></script>
 </body>
 
 </html>
